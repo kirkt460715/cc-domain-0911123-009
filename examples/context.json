@@ -1,0 +1,99 @@
+{
+  "synthetic": true,
+  "grid_seconds": 900,
+  "series": {
+    "main": [
+      10,
+      12,
+      18,
+      20,
+      16,
+      11,
+      10,
+      9
+    ],
+    "press": [
+      4,
+      5,
+      9,
+      10,
+      5,
+      4,
+      3,
+      3
+    ],
+    "oven": [
+      3,
+      4,
+      4,
+      6,
+      7,
+      4,
+      3,
+      2
+    ]
+  },
+  "tasks": [
+    {
+      "id": "p1",
+      "meter": "press",
+      "original_start": 2,
+      "duration": 2,
+      "power_kw": "8",
+      "earliest": 0,
+      "latest_end": 8,
+      "available": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "after": []
+    },
+    {
+      "id": "p2",
+      "meter": "oven",
+      "original_start": 3,
+      "duration": 2,
+      "power_kw": "8",
+      "earliest": 2,
+      "latest_end": 8,
+      "available": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "after": [
+        "p1"
+      ]
+    }
+  ],
+  "capacity_kw": "90",
+  "tree": {
+    "main": [
+      "press",
+      "oven"
+    ]
+  },
+  "tariffs": [
+    {
+      "id": "first",
+      "start": 0,
+      "end": 3600,
+      "price": "0.5"
+    },
+    {
+      "id": "second",
+      "start": 3600,
+      "end": 7200,
+      "price": "1.0"
+    }
+  ]
+}
