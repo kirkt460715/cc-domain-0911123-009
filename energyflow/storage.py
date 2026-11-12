@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS rates(id TEXT PRIMARY KEY,meter TEXT NOT NULL,start I
  end INTEGER NOT NULL,revision INTEGER NOT NULL,payload TEXT NOT NULL,digest TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS factors(id TEXT PRIMARY KEY,meter TEXT NOT NULL,start INTEGER NOT NULL,
  end INTEGER NOT NULL,revision INTEGER NOT NULL,payload TEXT NOT NULL,digest TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS plan_tasks(id TEXT PRIMARY KEY,meter TEXT NOT NULL,grid_seconds INTEGER NOT NULL,
+ revision INTEGER NOT NULL,payload TEXT NOT NULL,digest TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS closures(id TEXT PRIMARY KEY,start INTEGER NOT NULL,end INTEGER NOT NULL,
  state TEXT NOT NULL,revision INTEGER NOT NULL,payload TEXT NOT NULL,digest TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS corrections(id TEXT PRIMARY KEY,closure TEXT NOT NULL,payload TEXT NOT NULL,
@@ -147,6 +149,7 @@ class Store:
             "schedules",
             "rates",
             "factors",
+            "plan_tasks",
             "closures",
             "corrections",
         }
@@ -172,6 +175,7 @@ class Store:
             "schedules",
             "rates",
             "factors",
+            "plan_tasks",
             "closures",
             "corrections",
         ]:

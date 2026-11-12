@@ -11,6 +11,8 @@ from .settlement.emissions import EmissionFactors
 from .settlement.closing import Closing
 from .settlement.demand import Demand
 from .interfaces.bundles import Bundles
+from .planning.tasks import PlanTasks
+from .planning.engine import PlanEngine
 from .quality import Quality
 from .values import object_fields, reject
 
@@ -31,6 +33,14 @@ class EnergyService:
         self.bundles = Bundles(self.closing)
         self.balance = MeterBalance(self.catalog, self.reconstruction)
         self.demand = Demand(self.reconstruction)
+        self.planning_tasks = PlanTasks(self.store, self.catalog)
+        self.planning = PlanEngine(
+            self.reconstruction,
+            self.demand,
+            self.tariffs,
+            self.planning_tasks,
+            self.catalog,
+        )
         self.quality = Quality(
             self.store,
             self.catalog,
@@ -161,6 +171,16 @@ class EnergyService:
                 "demand",
                 self.demand,
                 ["windows", "rolling_peak", "charge", "exceedances", "load_factor"],
+            ),
+            (
+                "planning",
+                self.planning,
+                ["coincidence", "plan"],
+            ),
+            (
+                "planning_task",
+                self.planning_tasks,
+                ["put", "get", "list", "remove"],
             ),
             (
                 "quality",
